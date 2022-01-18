@@ -1,0 +1,19 @@
+{
+    "users": [
+      {
+        "id": "jinhee153",
+        "password": "1532",
+        "name": "영앤리치"
+      },
+      {
+        "id": "dohyon155",
+        "password": "1534",
+        "name": "희태씨"
+      },
+      {
+        "id": "0myong152",
+        "password": "1565",
+        "name": "양명대군"
+      }
+    ]
+  }
