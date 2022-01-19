@@ -27,11 +27,11 @@ function Join(){
                               //   account['name'] = user.name;  추가가 안되네...왜??....
                             setusername(user.name);       
                         } else if( !user || account.password !== user.password ){
-                            alert('아이디와 비밀번호를 다시 확인 해주세요.');
-                            console.log('아이디 안나와');
+                            alert('아이디와 비밀번호를 다시 확인 해주십시요.');
+                          //  console.log('아이디 안나와');
                         } 
                } )
-              .catch((error) => { alert('서버와 연결이 불안정 합니다.'); console.log('서버실패'); })                
+              .catch((error) => { alert('아이디를 다시 확인 해주십시요.'); console.log('서버실패'); })                
       }    
 
     useEffect( () => { 

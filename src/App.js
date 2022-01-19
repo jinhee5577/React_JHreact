@@ -2,6 +2,8 @@
 import React, { Component, useEffect, useState, } from 'react';
 import { Navbar,Container,Nav,NavDropdown,Spinner  } from 'react-bootstrap';
 import logo from './logo.svg';
+import chorong from './aesset/chorong.png';
+import chorong2 from './aesset/chorong2.png';
 import './App.css';
 import Data from './data.js';
 import Detail from './Detail.js';
@@ -223,7 +225,17 @@ function App( {sliders} ) {
                             </svg>
                         </div> 
                         <h4>제작 : OH JIN HEE</h4>                    
-                      </footer>                   
+                      </footer> 
+                      <div className='chorong_box'> 
+                        <div className="chorong">
+                          <img src={chorong2} alt="청사초롱"/>
+                          <span></span>
+                        </div>    
+                        <div className="chorong rong2">
+                          <img src={chorong} alt="청사초롱"/>
+                          <span></span>
+                        </div> 
+                      </div>                      
                   </div>          
                 </Route>
 
@@ -265,7 +277,7 @@ function App( {sliders} ) {
           </div>         
           {/* <header className="App-header">           
             <input  placeholder="입력해봐" /> <button>전송</button>
-          </header> */}      
+          </header> */}           
         </div>
       </>  
   );
