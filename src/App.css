@@ -1790,31 +1790,37 @@ input:hover {
     font-weight: 500 !important;
   }
 
-  .chorong_box {
+  /* .chorong_box {
     width: 100%;
     display: flex;
     position: fixed;
     top: 43%;
     z-index: 1151;
-  }
+  } */
 
-  .chorong_box .chorong {
+  .chorong {
     width: 19%;
     animation: infinite 1.4s R_L;
-    position: relative;
+    position: fixed;
+    top: 45%;
+    z-index: 1151;
     animation-direction: alternate;
   }
-
-  .chorong_box .rong2 {
-    margin-left: auto;
+  .rong2 {
+    right: 0;
   }
-  .chorong_box .chorong img {
+
+  .chorong .positionbox {
+    position: relative;
+  }
+  .chorong img {
     width: 100%;
     position: relative;
     z-index: 153;
   }
 
-  .chorong_box .chorong span {
+  .chorong span {
+    display: block;
     width: 30px;
     height: 26px;
     background: rgba(243, 243, 60, 0.651);
@@ -1822,14 +1828,11 @@ input:hover {
     box-shadow: 0 0 8px 22px rgba(238, 238, 77, 0.616);
     position: absolute;
     top: 45%;
-    left: 15%;
+    left: 36.5%;
   }
 
-  .chorong_box .chorong:nth-child(1) span {
-    left: 36%;
-  }
-  .chorong_box .chorong:nth-child(2) span {
-    left: 20%;
+  .rong2 span {
+    left: 20% !important;
   }
   @keyframes R_L {
     from {

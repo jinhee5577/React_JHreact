@@ -1,7 +1,6 @@
  /*eslint-disable*/ 
 import React, { Component, useEffect, useState, } from 'react';
 import { Navbar,Container,Nav,NavDropdown,Spinner  } from 'react-bootstrap';
-import logo from './logo.svg';
 import chorong from './aesset/chorong.png';
 import chorong2 from './aesset/chorong2.png';
 import './App.css';
@@ -225,17 +224,19 @@ function App( {sliders} ) {
                             </svg>
                         </div> 
                         <h4>제작 : OH JIN HEE</h4>                    
-                      </footer> 
-                      <div className='chorong_box'> 
-                        <div className="chorong">
+                      </footer>                  
+                      <div className="chorong">
+                        <div className='positionbox'>
                           <img src={chorong2} alt="청사초롱"/>
                           <span></span>
-                        </div>    
-                        <div className="chorong rong2">
+                        </div>                        
+                      </div>    
+                      <div className="chorong rong2">
+                        <div className='positionbox'>
                           <img src={chorong} alt="청사초롱"/>
                           <span></span>
-                        </div> 
-                      </div>                      
+                        </div>                       
+                      </div>                                       
                   </div>          
                 </Route>
 

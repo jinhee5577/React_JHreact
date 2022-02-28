@@ -1,7 +1,6 @@
  /*eslint-disable*/ 
 import React, { Component, useState, useEffect } from 'react';
 import './App.css';
-import {  } from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -46,7 +45,7 @@ function Join(){
             <div className="joinbox">
                <h3 className="log_jh">Login JH</h3>                            
                <input className="info" type="text" name='id' placeholder="id" onChange={(e) => { setinput_id(e.target.value); }} />
-               <input className="info" type="text" name='password' placeholder="password" onChange={(e) => { setinput_pass(e.target.value); }}/>
+               <input className="info" type="password" name='password' placeholder="password" onChange={(e) => { setinput_pass(e.target.value); }}/>
                <div className="sendbox">              
                 <div className="check">
                   <input type="checkbox"/><span>Remember me!</span>
