@@ -57,17 +57,17 @@ function Detail( props ){
                     : null              
                 }                         
                 <div className="col-md-6 prod">
-                    <img src={ 'https://codingapple1.github.io/shop/shoes' + (find.id + 1) + '.jpg'  }  width="90%" />
+                    {/* <img src={ 'https://codingapple1.github.io/shop/shoes' + (find.id + 1) + '.jpg'  }  width="90%" /> */}
+                    <img src={find.img}  width="90%" />
                 </div>
                 <div className="col-md-6 mt-4">
-                    <h4 className="pt-5">{ find.title } <span className="hart" onClick={hartplus} >💕{hart}</span></h4>
-                    <p>{ find.content }</p>
+                    <h4 className="pt-5">{ find.title } <span className="hart" onClick={hartplus} >💕{hart}</span></h4>                
                     <p className="ppo">{ find.price }원</p> 
                     <p className='drb' >배송비 :  전상품 무료배송</p>                               
                 </div>
             </div>
             <div className="buybox">
-              <button className="btn btn-danger btnjin" onClick={ () => { showchan(!show) } } >구매하기</button> 
+              <button className="btn btn-danger btnjin" onClick={ () => { showchan(!show) } } >{ show ? "닫기" : '구매하기' }</button> 
               {/* <button className="btn btn-danger" onClick={ () => { history.goBack(); } } >뒤로가기</button>  */}
               <button className="btn btn-danger btnjin" onClick={ () => { 
                             history.push('/cart'); 

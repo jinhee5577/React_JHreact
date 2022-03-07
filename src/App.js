@@ -4,7 +4,7 @@ import { Navbar,Container,Nav,NavDropdown,Spinner  } from 'react-bootstrap';
 import chorong from './aesset/chorong.png';
 import chorong2 from './aesset/chorong2.png';
 import './App.css';
-import Data from './data.js';
+// import Data from './data.js';
 import Detail from './Detail.js';
 import Cart from './Cart.js';
 import Join from './Join.js';
@@ -24,7 +24,7 @@ import "slick-carousel/slick/slick-theme.css";
 // const { kakao } = window;
 
 function App( {sliders} ) {
-  let [shoes, shoeschan] = useState( Data );
+  let [shoes, shoeschan] = useState([]);
   let history = useHistory();
   let [morebtn, morebtnchan] = useState(1);
   let [fail_m, fail_mchan] = useState(false);
@@ -76,12 +76,20 @@ function App( {sliders} ) {
     
    let mov_async = async () => {
         const {data : { data }} = await axios.get('https://yts.mx/api/v2/list_movies.json?sort_by=like_count');
-        console.log(data.movies);
+     //   console.log(data.movies);
         setjinmov(data.movies);
       }    
+  
+   let MLB = async () => {
+        let {data : { products } } = await axios.get('https://raw.githubusercontent.com/jinhee5577/allData/master/product.json');
+        console.log(products);
+        shoeschan(products);      
+    }   
+      
 
   useEffect( () => { 
-       mov_async();   
+       mov_async();  
+       MLB(); 
         // .then( (result) => { console.log(result); } )
         // .catch( () => { console.log('아직 기다려주세요.'); } )      
    }, [] );   
@@ -149,8 +157,8 @@ function App( {sliders} ) {
                       <div className="cont2">
                           <div className="jinrow" >
                               {    
-                                shoes.map( ( foot, i ) => {
-                                        return <Card shoes={ shoes[i] } i={ i } key={i} history={ history } />;
+                                shoes.map( (item, i ) => {
+                                        return <Card item={item} i={ i } key={i} history={ history } />;
                                   } )
                               }             
 
@@ -287,11 +295,11 @@ function App( {sliders} ) {
 
 function Card( props ){
     return(
-        <div className="mlb_col" onClick={ () => { props.history.push('/detail/' + props.shoes.id ); } } >    
-            <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.shoes.id + 1) + '.jpg' } width="100%" />
+        <div className="mlb_col" onClick={ () => { props.history.push('/detail/' + props.item.id ); } } >    
+            <img src={ props.item.img } width="95%" />
             <div className="square">
-              <h4>{ props.shoes.title }</h4>
-              <p>{ props.shoes.content } & { props.shoes.price }</p>
+              <h4>{ props.item.title }</h4>
+              <p>{ props.item.price }원</p>
             </div>
         </div>
       );

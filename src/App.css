@@ -157,30 +157,26 @@ li {
   .jinrow .mlb_col {
     width: 32%;
     text-align: center;
-  }
-
-  .jinrow .mlb_col {
-    text-align: center;
     margin-bottom: 32px;
   }
 
   .mlb_col .square {
     width: 100%;
-    margin-top: 16px;
+    margin-top: 12px;
     padding: 0 2px;
     box-sizing: border-box;
   }
 
   .jinrow .mlb_col h4 {
     text-align: center;
-    color: #282c34;
-    font-size: 0.92rem;
+    color: #3e434e;
+    font-size: 0.9rem;
     font-weight: bold;
   }
 
   .jinrow .mlb_col p {
-    color: #282c34;
-    font-size: 0.79rem;
+    color: #949292;
+    font-size: 0.97rem;
     font-weight: 500;
     margin: 0;
   }
