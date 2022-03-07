@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Hahmlet:wght@100;300;400&family=IBM+Plex+Sans+KR:wght@300;400&family=Jua&family=Russo+One&family=Sunflower:wght@300&display=swap");
+
 a {
   text-decoration: none;
   color: white;
@@ -108,9 +110,34 @@ li {
     font-weight: bold;
   }
 
+  #sub_menu {
+    width: 60%;
+    line-height: 50px;
+    height: 52px;
+    color: #89868b;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-weight: bold;
+    font-size: 1.05rem;
+  }
+  #sub_menu li {
+    width: 28%;
+    transition: all 0.2s;
+  }
+
+  #sub_menu li:hover {
+    border-bottom: 1.5px solid #743ba1;
+    font-size: 1.2rem;
+    color: #743ba1;
+  }
   .new {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 40px;
     font-weight: 400;
     position: relative;
@@ -172,6 +199,7 @@ li {
     color: #3e434e;
     font-size: 0.9rem;
     font-weight: bold;
+    font-family: "IBM Plex Sans KR", sans-serif;
   }
 
   .jinrow .mlb_col p {
@@ -412,29 +440,37 @@ li {
 
   .mt-4 {
     text-align: left;
-    padding: 0 30px;
+    padding: 0 20px;
     padding-bottom: 25px;
     box-sizing: border-box;
+    position: relative;
   }
 
   .pt-5 {
-    width: 100%;
+    width: 70%;
     padding: 0 !important;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     line-height: 30px;
     position: relative;
-    margin-bottom: 2px;
+    margin-bottom: 20px;
+    color: rgb(87, 86, 86);
+    font-family: "IBM Plex Sans KR", sans-serif;
   }
-  .pt-5 .hart {
-    display: inline-block;
+  .mt-4 .hart {
     position: absolute;
     right: 25px;
+    top: 0;
+    font-size: 1.4rem;
+    line-height: 30px;
+    color: rgb(87, 86, 86);
+    font-weight: bold;
   }
 
   .row .ppo {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     margin-bottom: 10px;
+    color: rgb(53, 52, 52);
   }
 
   .row .drb {
@@ -554,7 +590,11 @@ li {
 
   .tab_con {
     width: 100%;
-    margin-top: 25px;
+    margin-top: 85px;
+  }
+  .tab_con h4 {
+    font-size: 1.15rem;
+    color: #4b4b4b;
   }
 
   .active {
@@ -834,10 +874,12 @@ input:hover {
   }
 
   .carbox .cart_t {
-    font-size: 1rem;
+    font-size: 0.93rem;
     font-weight: 400;
     line-height: 15px;
     color: rgb(100, 100, 100);
+    line-height: 18px;
+    font-family: "IBM Plex Sans KR", sans-serif;
   }
 
   .carbox .cart_p {
@@ -1517,8 +1559,9 @@ input:hover {
   .resent article .re_0 {
     width: 42px;
     height: 42px;
-    border: 2.8px solid rgba(158, 51, 230, 0.527);
+    /* border: 2.8px solid rgba(158, 51, 230, 0.527); */
     border-radius: 50%;
+    background: rgba(233, 228, 235, 0.664);
     margin: 0 auto;
     overflow: hidden;
   }
@@ -1536,9 +1579,10 @@ input:hover {
   }
 
   .resent article .re_0 img {
-    width: 155%;
+    width: 110%;
     position: relative;
-    left: -20%;
+    left: -5%;
+    top: -5%;
   }
 
   .resent h6 {

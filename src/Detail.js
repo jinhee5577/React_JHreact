@@ -18,7 +18,7 @@ function Detail( props ){
       let [color_selec, setcolor_selec] = useState('');
       let [size_selec, setsize_selec] = useState(0);
        
-      let find = props.shoes.find( (item) => { 
+      let find = props.products_mlb.find( (item) => { 
                         return item.id == id;           
                   } );     
       find['qunn'] = 1;
@@ -28,7 +28,7 @@ function Detail( props ){
          
       useEffect( () => {                                       
              let timer = setTimeout( () => { alertchan(false) } , 2000 );
-             console.log('hi');
+          //   console.log('hi');
              return () => { clearTimeout(timer); }
             }, [] );
             
@@ -38,7 +38,7 @@ function Detail( props ){
                   resent = [];   
               } else { resent = JSON.parse(resent); }       
 
-              if( resent.length < 3 ){ resent.push(id); } 
+              if( resent.length < 3 ){ resent.push(find.img); } 
               resent = new Set(resent);
               resent = [...resent];             
             //  console.log(resent);
@@ -61,7 +61,8 @@ function Detail( props ){
                     <img src={find.img}  width="90%" />
                 </div>
                 <div className="col-md-6 mt-4">
-                    <h4 className="pt-5">{ find.title } <span className="hart" onClick={hartplus} >💕{hart}</span></h4>                
+                    <h4 className="pt-5">{ find.title } </h4>  
+                    <div className="hart" onClick={hartplus} >💕{hart}</div>              
                     <p className="ppo">{ find.price }원</p> 
                     <p className='drb' >배송비 :  전상품 무료배송</p>                               
                 </div>
@@ -77,22 +78,19 @@ function Detail( props ){
             {
                 show === true 
                 ? <div className="popup">                                                               
-                        <select name='color' onChange={ (e) => { console.log(color_selec); setcolor_selec( e.target.value ); } }>
-                            <option value="색상">색상</option>
-                            <option value="보라">보라</option>
-                            <option value="블루">블루</option>
-                            <option value="핑크">핑크</option>
-                            <option value="베이지">베이지</option>
-                            <option value="블랙">블랙</option>
+                        <select name='color' onChange={ (e) => { setcolor_selec( e.target.value ); } }>
+                            {
+                               find.option.color.map((item, i) => {
+                                     return  <option value={item} key={i} >{item}</option>;
+                               })
+                            }                         
                         </select>
-                        <select name='size' onChange={ (e) => { console.log(size_selec); setsize_selec( e.target.value ); } } >
-                            <option value="사이즈">사이즈</option>
-                            <option value="230">230</option>
-                            <option value="240">240</option>
-                            <option value="250">250</option>
-                            <option value="260">260</option>
-                            <option value="270">270</option>
-                            <option value="280">280</option>
+                        <select name='size' onChange={ (e) => { setsize_selec( e.target.value ); } } >
+                            {
+                                find.option.size.map((item, i) => { 
+                                      return  <option value={item} key={i}>{item}</option>;
+                                })
+                            }                         
                         </select>
                         <div className="total"> 
                             <h3></h3>
@@ -130,9 +128,9 @@ function TabUI (props){
        } );
        
     if( props.tabnum === 0 ){
-        return <div className="tab_con">
-                    상품 정보
-                    <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.find.id + 1) + '.jpg'  }  width="90%" />
+        return <div className="tab_con"> 
+                  <h4>{props.find.title}</h4>               
+                  <img src={props.find.img}  width="80%" />
                </div>
     } else if( props.tabnum === 1 ){
         return <div className="tab_con">사이즈 는 각자 발사이즈 맞는거 고르자.</div>       

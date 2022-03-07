@@ -23,7 +23,7 @@ function Cart(props){
                           return (
                             <tr key={i}>                    
                               <td>
-                                <img src={ 'https://codingapple1.github.io/shop/shoes' + (item.id + 1) + '.jpg' } width="32%" />
+                                <img src={item.img} width="32%" />
                                 <div className="carbox">
                                   <h3 className="cart_t">{item.title}</h3> 
                                   <h3 className="cart_p">{item.price * item.qunn}원</h3> 
@@ -50,9 +50,9 @@ function Cart(props){
             <div className="total_cart">
                  <h2>장바구니 수량 : <span>{ props.state.length }</span> </h2> 
                  <h2>총 상품금액 : <span>{ props.state.reduce( (prev, cerr) => { 
-                                                console.log(prev);
-                                                console.log(cerr);
-                                                console.log(prev + cerr.total);
+                                          //      console.log(prev);
+                                         //       console.log(cerr);
+                                        //        console.log(prev + cerr.total);
                                                 return prev + cerr.total;  
                      }, 0) } 원</span> </h2>   
             </div>

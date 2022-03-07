@@ -24,7 +24,7 @@ import "slick-carousel/slick/slick-theme.css";
 // const { kakao } = window;
 
 function App( {sliders} ) {
-  let [shoes, shoeschan] = useState([]);
+  let [products_mlb, Setproducts_mlb] = useState([]);
   let history = useHistory();
   let [morebtn, morebtnchan] = useState(1);
   let [fail_m, fail_mchan] = useState(false);
@@ -82,8 +82,8 @@ function App( {sliders} ) {
   
    let MLB = async () => {
         let {data : { products } } = await axios.get('https://raw.githubusercontent.com/jinhee5577/allData/master/product.json');
-        console.log(products);
-        shoeschan(products);      
+    //    console.log(products);
+        Setproducts_mlb(products);      
     }   
       
 
@@ -146,18 +146,24 @@ function App( {sliders} ) {
                           <div className="bacground bg4">                   
                               <h3>20%  Season  OFF!</h3>
                           </div>
-                      </Slider>         
+                      </Slider>  
+                      <ul id="sub_menu">
+                        <li>TOP</li>
+                        <li>CAP</li>
+                        <li>SHOES</li>
+                      </ul> 
+
                       <h3 className="new"> 이번주 신상품 
                         <button className="sort_b" onClick={ () => {
-                              let sort_copy = [...shoes];
+                              let sort_copy = [...products_mlb];
                               sort_copy.sort( (a, b) => { return a.price - b.price; } );
-                              shoeschan( sort_copy );                  
+                              Setproducts_mlb( sort_copy );                  
                         } } >가격순</button>
                       </h3>                  
                       <div className="cont2">
                           <div className="jinrow" >
                               {    
-                                shoes.map( (item, i ) => {
+                                products_mlb.map( (item, i ) => {
                                         return <Card item={item} i={ i } key={i} history={ history } />;
                                   } )
                               }             
@@ -180,7 +186,7 @@ function App( {sliders} ) {
                                               .then((result) => {
                                                     spinnerchan(false); 
                                                     console.log(result.data);
-                                                    shoeschan( [...shoes, ...result.data ] );                                     
+                                                    Setproducts_mlb( [...products_mlb, ...result.data ] );                                     
                                                   })
                                               .catch(() => {
                                                     spinnerchan(false); 
@@ -249,7 +255,7 @@ function App( {sliders} ) {
                 </Route>
 
                 <Route path="/detail/:id">
-                  <Detail shoes={ shoes } noticechan={noticechan} />
+                  <Detail products_mlb={ products_mlb } noticechan={noticechan} />
                 </Route>
 
                 <Route path="/cart">
@@ -274,10 +280,11 @@ function App( {sliders} ) {
             <h6 onClick={ () => { localStorage.removeItem('resent'); } }>resent</h6>
             <article>
               {
-                  resent.map( (num, i) => { 
+                  resent.map( (img, i) => { 
                         return (
                             <div className="re_0" key={i}>
-                              <img src={'https://codingapple1.github.io/shop/shoes' + (Number(num) + 1) + '.jpg'} />
+                              {/* <img src={'https://codingapple1.github.io/shop/shoes' + (Number(num) + 1) + '.jpg'} /> */}
+                              <img src={img}  alt="제품"/>
                             </div>   
                         );   
                   } )
