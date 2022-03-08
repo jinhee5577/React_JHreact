@@ -111,7 +111,7 @@ li {
   }
 
   #sub_menu {
-    width: 56%;
+    width: 70%;
     line-height: 50px;
     height: 52px;
     display: flex;
@@ -191,7 +191,7 @@ li {
   .jinrow .mlb_col {
     width: 32%;
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .mlb_col .square {
@@ -209,11 +209,34 @@ li {
     font-family: "IBM Plex Sans KR", sans-serif;
   }
 
-  .jinrow .mlb_col p {
+  .mlb_col .square article {
+    width: 100%;
+    display: flex;
+  }
+  .jinrow .mlb_col article p {
+    width: 50%;
     color: #949292;
-    font-size: 0.97rem;
+    font-size: 0.98rem;
     font-weight: 500;
     margin: 0;
+  }
+  .mlb_col .square article ul {
+    width: 50%;
+    line-height: 24px !important;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+  .mlb_col .square article ul li {
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 4px 0.5px rgba(128, 128, 128, 0.712);
+    position: relative;
+    top: 5.5px;
   }
 
   #jinhee {

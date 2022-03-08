@@ -4,7 +4,6 @@ import { Navbar,Container,Nav,NavDropdown,Spinner  } from 'react-bootstrap';
 import chorong from './aesset/chorong.png';
 import chorong2 from './aesset/chorong2.png';
 import './App.css';
-// import Data from './data.js';
 import Detail from './Detail.js';
 import Cart from './Cart.js';
 import Join from './Join.js';
@@ -27,7 +26,6 @@ function App( {sliders} ) {
   let [products_mlb, Setproducts_mlb] = useState([]);   // main상품 data
   let [reference, Setreference] = useState([]);   // sub-menu탭 변경시 이용할 초기값.
   let history = useHistory();
-  let [morebtn, morebtnchan] = useState(1);
   let [fail_m, fail_mchan] = useState(false);
   let [mobile, mobilechan] = useState(false);
   let [spinner, spinnerchan] = useState(false);
@@ -37,8 +35,10 @@ function App( {sliders} ) {
   let [notice, noticechan] = useState(false);
   let [onvideo, setonvideo] = useState(false);
   let [jinmov, setjinmov] = useState([]);
+  let [morebtn, Setmorebtn] = useState(1);
+
   // let dx_state = useSelector( (state) => { return state; } );
- //  console.log(dx_state);
+
   let resent = localStorage.getItem('resent');
     if( resent == null ){
         resent = [];   
@@ -99,10 +99,29 @@ function App( {sliders} ) {
             let mlb_filter = state_copy.filter((item) => {
                     return  item.type === attr;
               });        
-              Setproducts_mlb(mlb_filter);
-        } 
-   }       
-  
+            Setproducts_mlb(mlb_filter);
+        } else {
+            Setproducts_mlb(reference); 
+        }
+   } 
+   
+   let add_MLB = () => {      
+        spinnerchan(true);
+        Setmorebtn(morebtn + 1);
+     //   console.log(morebtn);                                      
+        axios.get( `https://raw.githubusercontent.com/jinhee5577/allData/master/product${morebtn + 1}.json` )
+        .then((result) => {
+              spinnerchan(false); 
+          //    console.log(result.data.products2);
+              Setproducts_mlb( [...products_mlb, ...result.data.products2 ] );   
+              Setreference( [...reference, ...result.data.products2 ] );                                   
+          })
+        .catch(() => {
+              spinnerchan(false); 
+              console.log('없습니다.');
+              fail_mchan(true);
+          })                                      
+    }     
 
   useEffect( () => { 
        mov_async();  
@@ -167,6 +186,7 @@ function App( {sliders} ) {
                           </div>
                       </Slider>  
                       <ul id="sub_menu">
+                        <li><button name="new" onClick={sub_menu} >NEW</button></li>
                         <li><button name="top" onClick={sub_menu} >TOP</button></li>
                         <li><button name="cap" onClick={sub_menu}>CAP</button></li>
                         <li><button name="shoes" onClick={sub_menu}>SHOES</button></li>                    
@@ -197,22 +217,7 @@ function App( {sliders} ) {
                                 ? <Spinner animation="grow" variant="warning" className="spinner_j" />
                                 : null
                               }
-                              <button className="more" onClick={ () => {      
-                                              spinnerchan(true);
-                                              morebtnchan(morebtn + 1);   
-                                              console.log(morebtn);                                      
-                                              axios.get( `https://codingapple1.github.io/shop/data${morebtn + 1}.json` )
-                                              .then((result) => {
-                                                    spinnerchan(false); 
-                                                    console.log(result.data);
-                                                    Setproducts_mlb( [...products_mlb, ...result.data ] );                                     
-                                                  })
-                                              .catch(() => {
-                                                    spinnerchan(false); 
-                                                    console.log('실패야-_-');
-                                                    fail_mchan(true);
-                                                  })                                      
-                              } } >더보기</button>                                        
+                              <button className="more" onClick={add_MLB} >더보기</button>                                        
                           </div>
                       </div>                        
                       <div id="jinhee">
@@ -309,10 +314,7 @@ function App( {sliders} ) {
                   } )
               }                    
             </article>         
-          </div>         
-          {/* <header className="App-header">           
-            <input  placeholder="입력해봐" /> <button>전송</button>
-          </header> */}           
+          </div>        
         </div>
       </>  
   );
@@ -320,12 +322,30 @@ function App( {sliders} ) {
 
 
 function Card( props ){
+    let [new_color, setnew_color] = useState([]);
+
+    useEffect(() => {
+          let color_copy = [...props.item.option.color];
+          color_copy.shift();
+          setnew_color(color_copy);
+     }, []);
+
+     
     return(
         <div className="mlb_col" onClick={ () => { props.history.push('/detail/' + props.item.id ); } } >    
             <img src={ props.item.img } width="95%" />
             <div className="square">
               <h4>{ props.item.title }</h4>
-              <p>{ props.item.price }원</p>
+              <article>
+                <p>{ props.item.price }원</p>
+                <ul>
+                  {              
+                    new_color.map((c, i) => {
+                          return  <li style={{ background : c }} key={i}></li>;
+                     })
+                  }                
+                </ul>
+              </article>             
             </div>
         </div>
       );
