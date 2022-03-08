@@ -24,7 +24,8 @@ import "slick-carousel/slick/slick-theme.css";
 // const { kakao } = window;
 
 function App( {sliders} ) {
-  let [products_mlb, Setproducts_mlb] = useState([]);
+  let [products_mlb, Setproducts_mlb] = useState([]);   // main상품 data
+  let [reference, Setreference] = useState([]);   // sub-menu탭 변경시 이용할 초기값.
   let history = useHistory();
   let [morebtn, morebtnchan] = useState(1);
   let [fail_m, fail_mchan] = useState(false);
@@ -80,12 +81,28 @@ function App( {sliders} ) {
         setjinmov(data.movies);
       }    
   
-   let MLB = async () => {
-        let {data : { products } } = await axios.get('https://raw.githubusercontent.com/jinhee5577/allData/master/product.json');
-    //    console.log(products);
-        Setproducts_mlb(products);      
-    }   
       
+   let MLB = async () => {
+        let {data : { products } } = await axios.get('https://raw.githubusercontent.com/jinhee5577/allData/master/product.json');       
+        Setproducts_mlb(products);      
+        Setreference(products);
+    }     
+
+   let sub_menu = (e) => {
+        let attr = e.target.getAttribute('name');          
+        let selct = reference.some((item) => {   // main 상품배열 쓰지말고, 참조용으로 만들어둔 reference초기값을 이용하자. (항상초기상품 갯수가 그데로이니.)
+                      return item.type === attr;
+                  });
+        if(selct){  
+        //   console.log(selct);                 
+            let state_copy = [...reference];     //  마찬가지로 참조용으로 만들어둔 reference초기값을 이용하자. (항상초기상품 갯수가 그데로이니.)
+            let mlb_filter = state_copy.filter((item) => {
+                    return  item.type === attr;
+              });        
+              Setproducts_mlb(mlb_filter);
+        } 
+   }       
+  
 
   useEffect( () => { 
        mov_async();  
@@ -93,6 +110,8 @@ function App( {sliders} ) {
         // .then( (result) => { console.log(result); } )
         // .catch( () => { console.log('아직 기다려주세요.'); } )      
    }, [] );   
+
+   
 
 
   return (
@@ -148,9 +167,9 @@ function App( {sliders} ) {
                           </div>
                       </Slider>  
                       <ul id="sub_menu">
-                        <li>TOP</li>
-                        <li>CAP</li>
-                        <li>SHOES</li>
+                        <li><button name="top" onClick={sub_menu} >TOP</button></li>
+                        <li><button name="cap" onClick={sub_menu}>CAP</button></li>
+                        <li><button name="shoes" onClick={sub_menu}>SHOES</button></li>                    
                       </ul> 
 
                       <h3 className="new"> 이번주 신상품 
@@ -239,7 +258,7 @@ function App( {sliders} ) {
                         </div> 
                         <h4>제작 : OH JIN HEE</h4>                    
                       </footer>                  
-                      <div className="chorong">
+                      {/* <div className="chorong">
                         <div className='positionbox'>
                           <img src={chorong2} alt="청사초롱"/>
                           <span></span>
@@ -250,7 +269,7 @@ function App( {sliders} ) {
                           <img src={chorong} alt="청사초롱"/>
                           <span></span>
                         </div>                       
-                      </div>                                       
+                      </div>                                        */}
                   </div>          
                 </Route>
 
