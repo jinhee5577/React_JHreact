@@ -26,7 +26,7 @@ function Cart(props){
                                 <img src={item.img} width="32%" />
                                 <div className="carbox">
                                   <h3 className="cart_t">{item.title}</h3> 
-                                  <h3 className="cart_p">{item.price * item.qunn}원</h3> 
+                                  <h3 className="cart_p">{(item.price * item.qunn).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }원</h3> 
                                   <div className="qunnti">
                                     <span onClick={ () => { props.dispatch({ type : 'minus', index : i }); } }>-</span> <h5>{ item.qunn }</h5> 
                                     <span onClick={ () => { props.dispatch({ type : 'plus',  index : i }); 
@@ -54,7 +54,7 @@ function Cart(props){
                                          //       console.log(cerr);
                                         //        console.log(prev + cerr.total);
                                                 return prev + cerr.total;  
-                     }, 0) } 원</span> </h2>   
+                     }, 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') } 원</span> </h2>   
             </div>
             {/* {
               props.notice === true

@@ -63,7 +63,7 @@ function Detail( props ){
                 <div className="col-md-6 mt-4">
                     <h4 className="pt-5">{ find.title } </h4>  
                     <div className="hart" onClick={hartplus} >💕{hart}</div>              
-                    <p className="ppo">{ find.price }원</p> 
+                    <p className="ppo">{ find.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }원</p> 
                     <p className='drb' >배송비 :  전상품 무료배송</p>                               
                 </div>
             </div>
@@ -94,7 +94,7 @@ function Detail( props ){
                         </select>
                         <div className="total"> 
                             <h3></h3>
-                            <h3><span className="s1">합계 :</span><span className="s2">{ find.price }원</span></h3>                            
+                            <h3><span className="s1">합계 :</span><span className="s2">{ find.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }원</span></h3>                            
                         </div>
                     </div>      
                 : null     

@@ -202,6 +202,7 @@ li {
   }
 
   .jinrow .mlb_col h4 {
+    height: 35.66px;
     text-align: center;
     color: #3e434e;
     font-size: 0.9rem;
@@ -577,11 +578,13 @@ li {
   }
 
   .popup .total h3 {
-    width: 50%;
     font-size: 1.4rem;
   }
-
+  .popup .total h3:nth-child(1) {
+    width: 45%;
+  }
   .popup .total h3:nth-child(2) {
+    width: 55%;
     text-align: right;
     display: flex;
   }

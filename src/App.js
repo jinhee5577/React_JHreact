@@ -337,7 +337,7 @@ function Card( props ){
             <div className="square">
               <h4>{ props.item.title }</h4>
               <article>
-                <p>{ props.item.price }원</p>
+                <p>{ props.item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }원</p>
                 <ul>
                   {              
                     new_color.map((c, i) => {
