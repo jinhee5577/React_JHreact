@@ -18,8 +18,7 @@
     let dispatch = useDispatch();
     let after_h = useRef();
     let after_h2 = useRef();
-    
-    console.log(vipcinema);
+
     let date = new Date();
     let pickday = date.getDay();
      //   date.setDate(28);    
@@ -52,13 +51,13 @@
       //  console.log(jinh3);           
        
     useEffect( () => {        
-             let jinh3 = document.querySelectorAll('.jinh3'); 
-             let change_d = document.querySelector('.change_d');
-             let yoil = document.querySelector('.yoil');
-                 jinh3[0].classList.add('we_da');
-                 change_d.innerText = alldate[0];     
-                 yoil.innerText = weekday[date.getDay()];
-      }, [] ); 
+       let jinh3 = document.querySelectorAll('.jinh3'); 
+       let change_d = document.querySelector('.change_d');
+       let yoil = document.querySelector('.yoil');
+          jinh3[0].classList.add('we_da');
+          change_d.innerText = alldate[0];     
+          yoil.innerText = weekday[date.getDay()];
+    }, []); 
   //    console.log(alldate);
 
     return (
