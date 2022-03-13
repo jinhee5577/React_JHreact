@@ -108,7 +108,7 @@ function premium(state = vipcinema, action){
       let copy = [...state];    
       let copy2 = [...state];
           copy2.splice(action.i, 1);          
-      if(copy[action.i].to == action.i){        
+      if(copy[action.i].to === action.i){        
          if( copy[action.i].set > 0 ){           
               copy[action.i].set--;
               copy[action.i].vip++;

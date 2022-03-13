@@ -307,13 +307,27 @@ li {
     color: #d09df7 !important;
   }
 
+  .korea_j section {
+    position: relative;
+    max-height: 334.05px;
+  }
+  .Mv_spn {
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e0f17c !important;
+  }
+
   .korea_j .slick-slide {
     padding-left: 10px;
   }
 
   .artbox .artimg {
     width: 100%;
-    height: 230px;
+    max-height: 230px;
     overflow: hidden;
     border-radius: 13px;
     background: rgb(255, 255, 255);

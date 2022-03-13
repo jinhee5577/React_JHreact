@@ -3,7 +3,7 @@
  import './App.css';
  import { useHistory, useParams } from 'react-router-dom';
  import { useSelector, useDispatch } from 'react-redux';
- import DatePicker from "react-datepicker";
+//  import DatePicker from "react-datepicker";
  import Slider from 'react-slick';
  import "react-datepicker/dist/react-datepicker.css";
  import "slick-carousel/slick/slick.css";
@@ -84,8 +84,7 @@
                                     if(ev == i){
                                        jinh3[ev].classList.add('we_da');
                                        change_d.innerText = date;
-                                       yoil.innerText = weekday[(pickday + i) % 7];  
-                                    //   console.log('g');
+                                       yoil.innerText = weekday[(pickday + i) % 7];                                  
                                     }    
                                  } }>{date}</h3> 
                                 <h6 >{weekday[(pickday + i) % 7]}</h6>

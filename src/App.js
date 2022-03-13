@@ -27,6 +27,7 @@
    let [fail_m, fail_mchan] = useState(false);
    let [mobile, mobilechan] = useState(false);
    let [spinner, spinnerchan] = useState(false);
+   let [MV_SPN, setMV_SPN] = useState(false);
    let [offsetyY, offsetyYchan] = useState(0);
    let [togglecon, toggleconchan] = useState(false);
    let [boxon, boxonchan] = useState(false);
@@ -102,17 +103,18 @@
              Setproducts_mlb(reference); 
          }
     } 
-
+      
     let mv_menu = (e) => { 
           let attr = e.target.getAttribute('name');
+          setMV_SPN(true);
           axios.get(`https://yts.mx/api/v2/list_movies.json?genre=${attr}&sort_by=year`)
           .then((res) => {
-            let {data : {movies}} = res.data;
-            setjinmov(movies);
-       //   console.log(movies);
+              let {data : {movies}} = res.data;
+              setMV_SPN(false);
+              setjinmov(movies);
+        //    console.log(movies);
           })
-          .catch(() => {  });
-
+          .catch((error) => { window.alert('정보를 받지 못했어요.'); });
     }
     
     let add_MLB = () => {      
@@ -213,8 +215,7 @@
                                  products_mlb.map( (item, i ) => {
                                     return <Card item={item} i={ i } key={i} history={ history } />;
                                  } )
-                               }             
- 
+                               }            
                                { fail_m ? <h3 className="fail">더는 상품이 없습니다.</h3> : null }
                                { spinner ? <Spinner animation="grow" variant="warning" className="spinner_j" /> : null }
                                <button className="more" onClick={add_MLB} >더보기</button>                                        
@@ -232,25 +233,28 @@
                                 <li><button name="comedy" onClick={mv_menu}>코메디</button></li>
                                 <li><button name="Fantasy" onClick={mv_menu}>판타지</button></li>                    
                              </ul>
-                             <Slider {...settings2} width="100%">                           
-                               {
-                                 jinmov.map( (item, i) => { 
-                                      return(
-                                          <div className="artbox" key={i} onClick={ () => { history.push('/cinema/' + item.id); } } >
-                                             <div className="artimg">
-                                               <img src={item.medium_cover_image}/> 
-                                               <strong>{i + 1}</strong>                                             
-                                             </div>
-                                             <div className="mv_con">
-                                               <h5>{item.title}</h5>
-                                               <h6>⭐ {item.rating}</h6>
-                                               <h4>예매하기</h4>
-                                             </div>                                          
-                                          </div>
-                                      );   
-                                   } ) 
-                               }                             
-                             </ Slider> 
+                             <section>
+                               <Slider {...settings2} width="100%">                           
+                                  { 
+                                      jinmov.map( (item, i) => { 
+                                          return(
+                                              <div className="artbox" key={i} onClick={ () => { history.push('/cinema/' + item.id); } } >
+                                                <div className="artimg">
+                                                  <img src={item.medium_cover_image}/> 
+                                                  <strong>{i + 1}</strong>                                             
+                                                </div>
+                                                <div className="mv_con">
+                                                  <h5>{item.title}</h5>
+                                                  <h6>⭐ {item.rating}</h6>
+                                                  <h4>예매하기</h4>
+                                                </div>                                          
+                                              </div>
+                                          );   
+                                      } ) 
+                                  }                             
+                               </ Slider> 
+                               { MV_SPN ? <Spinner animation="grow" variant="info" className="Mv_spn" /> : null }
+                             </section>
                              <button className="vid_but" onClick={ () => {setonvideo(true);} } >홍보영상</button>                               
                            </div>                      
                          </div>       

@@ -19,7 +19,7 @@ function Detail( props ){
       let [size_selec, setsize_selec] = useState(0);
        
       let find = props.products_mlb.find( (item) => { 
-                        return item.id == id;           
+                        return item.id === Number(id);           
                   } );     
       find['qunn'] = 1;
       find['select'] = [color_selec, size_selec];
@@ -51,11 +51,7 @@ function Detail( props ){
       return(
          <div className="container nct_j">
             <div className="row">
-                { 
-                    alert === true
-                    ? <h3 className="aleat_t">재고가 얼마 남지 않았습니다.</h3>
-                    : null              
-                }                         
+                { alert ? <h3 className="aleat_t">재고가 얼마 남지 않았습니다.</h3> : null }                         
                 <div className="col-md-6 prod">
                     {/* <img src={ 'https://codingapple1.github.io/shop/shoes' + (find.id + 1) + '.jpg'  }  width="90%" /> */}
                     <img src={find.img}  width="90%" />

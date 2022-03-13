@@ -2,7 +2,6 @@
  import React, { Component, useState, useEffect } from 'react';
  import './App.css';
  import { useHistory, useParams } from 'react-router-dom';
- import { Link, Route, Switch } from 'react-router-dom';
  import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -10,8 +9,8 @@
     let { mm } = useParams();
     let history = useHistory();
     let dispatch = useDispatch();
-    let findmove = props.jinmov.find( (m) => { return m.id == mm; } );
-    let movindex = props.jinmov.findIndex( (m) => { return m.id == mm; } );  
+    let findmove = props.jinmov.find( (m) => { return m.id === Number(mm); } );
+    let movindex = props.jinmov.findIndex( (m) => { return m.id === Number(mm); } );  
 
      return(
         <div className="cinema_wrap">

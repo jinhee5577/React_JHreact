@@ -36,7 +36,7 @@ function Kakaomap() {
                 map.setBounds(bounds);
                  // 페이지 목록 보여주는 displayPagination() 추가
                   displayPagination(pagination);
-                  console.log(data);                
+              //    console.log(data);                
                   setshowplace(data);
                //  console.log(showplace);
             } 
