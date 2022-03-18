@@ -1,5 +1,6 @@
  /*eslint-disable*/ 
 import React, { Component, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ function Join(){
    let [input_id, setinput_id] = useState(''); 
    let [input_pass, setinput_pass] = useState('');
    let [username, setusername] = useState(''); 
+   let history = useHistory();
    let account = { 
              id : input_id,
              password : input_pass, 
@@ -55,7 +57,7 @@ function Join(){
             </div>
             {
                 enter === true
-                ? <div className="vip" onClick={ () => { enterchan(false); } } >
+                ? <div className="vip" onClick={ () => { enterchan(false); history.push('/'); } } >
                     <h2 className='out'>어서 오십시오. {username} VIP 회원이십니다.</h2>  
                   </div>
                 : null  

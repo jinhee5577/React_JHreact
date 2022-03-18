@@ -5,7 +5,6 @@
  import { useSelector, useDispatch } from 'react-redux';
 //  import DatePicker from "react-datepicker";
  import Slider from 'react-slick';
- import "react-datepicker/dist/react-datepicker.css";
  import "slick-carousel/slick/slick.css";
  import "slick-carousel/slick/slick-theme.css";
 
