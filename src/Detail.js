@@ -2,7 +2,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 import { useHistory, useParams } from 'react-router-dom';
-import { Nav, } from 'react-bootstrap';
+import { Nav, Table} from 'react-bootstrap';
 import { CSSTransition, } from 'react-transition-group';
 import { connect, } from 'react-redux';
 
@@ -30,7 +30,7 @@ function Detail( props ){
              let timer = setTimeout( () => { alertchan(false) } , 2000 );
           //   console.log('hi');
              return () => { clearTimeout(timer); }
-            }, [] );
+      }, [] );
             
       useEffect( () => { 
           let resent = localStorage.getItem('resent');
@@ -60,7 +60,9 @@ function Detail( props ){
                     <h4 className="pt-5">{ find.title } </h4>  
                     <div className="hart" onClick={hartplus} >💕{hart}</div>              
                     <p className="ppo">{ find.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }원</p> 
-                    <p className='drb' >배송비 :  전상품 무료배송</p>                               
+                    <p className='drb drb1' >혜택정보 :  카드무이자</p> 
+                    <p className='drb' >적립금 :  <span className='p_m'>{find.price / 1000}</span>p 적립</p>         
+                    <p className='drb drb3' >배송비 :  전상품 무료배송</p>                               
                 </div>
             </div>
             <div className="buybox">
@@ -118,20 +120,37 @@ function Detail( props ){
       );
   }
 
-function TabUI (props){
+function TabUI (props){ 
     useEffect( () => {
              props.csstrnchan(true);  
        } );
+
        
     if( props.tabnum === 0 ){
         return <div className="tab_con"> 
-                  <h4>{props.find.title}</h4>               
+                  <h4>DETAIL</h4>               
                   <img src={props.find.img}  width="80%" />
                </div>
     } else if( props.tabnum === 1 ){
-        return <div className="tab_con">사이즈 는 각자 발사이즈 맞는거 고르자.</div>       
+        let size_copy = [...props.find.option.size];
+        size_copy.shift();
+
+        return (<div className="tab_con">
+                  <h4>CHOOSE MY SIZE</h4>   
+                  <Table striped bordered hover>                 
+                    <tbody>
+                      <tr>
+                        { 
+                          size_copy.map((s, i) => {
+                              return <th key={i}>{s}</th>;
+                          })  
+                        }                         
+                      </tr>
+                    </tbody>                        
+                  </Table>
+               </div>);       
     } else if( props.tabnum === 2 ){
-        return <div className="tab_con">악플 사절. (준비중 입니다.)</div>
+        return <div className="tab_con">(준비중 입니다.)</div>
     } else if( props.tabnum === 3 ){
         return <div className="tab_con">교환/반품 준비중 입니다. from JHshop</div>
     }    

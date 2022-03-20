@@ -9,6 +9,7 @@
  import Video from './Video.js';
  import Cinema from './Cinema.js';
  import Ticketing from './Ticketing.js';
+ import Seach_input from './Seach_input.js';
  import axios from 'axios';
  import Slider from 'react-slick';
  import { useHistory } from 'react-router-dom';
@@ -35,6 +36,7 @@
    let [onvideo, setonvideo] = useState(false);
    let [jinmov, setjinmov] = useState([]);
    let [morebtn, Setmorebtn] = useState(1);
+
  
    // let dx_state = useSelector( (state) => { return state; } );
  
@@ -56,8 +58,7 @@
  
    useEffect( () => {
       window.addEventListener('scroll', () => {                    
-                offsetyYchan( window.pageYOffset ); 
-            //   console.log(window.pageYOffset);  
+                offsetyYchan( window.pageYOffset );     
                 
                 if( offsetyY > 1900 ){         
                //   console.log('s');
@@ -134,7 +135,8 @@
                fail_mchan(true);
            })                                      
      }     
- 
+
+     
    useEffect( () => { 
       mov_async();  
       MLB(); 
@@ -268,7 +270,8 @@
                              </svg>
                          </div> 
                          <h4>제작 : OH JIN HEE</h4>                    
-                       </footer>                 
+                       </footer>     
+                       <Seach_input  reference={reference} jinmov={jinmov} history={history} />                   
                    </div>          
                  </Route>
  
@@ -316,14 +319,10 @@
  
  
  function Card( props ){
-     let [new_color, setnew_color] = useState([]);
- 
-     useEffect(() => {
-           let color_copy = [...props.item.option.color];
-           color_copy.shift();
-           setnew_color(color_copy);
-      }, []); 
-      
+    let color_copy = [...props.item.option.color];
+    color_copy.shift();
+
+    
      return(
          <div className="mlb_col" onClick={ () => { props.history.push('/detail/' + props.item.id ); } } >    
              <img src={ props.item.img } width="95%" />
@@ -333,7 +332,7 @@
                  <p>{ props.item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }원</p>
                  <ul>
                    {              
-                     new_color.map((c, i) => {
+                     color_copy.map((c, i) => {
                            return  <li style={{ background : c }} key={i}></li>;
                       })
                    }                

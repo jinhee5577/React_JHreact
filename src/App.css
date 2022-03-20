@@ -545,6 +545,19 @@ li {
   .row .drb {
     font-size: 0.9rem;
     color: #545455;
+    margin-bottom: 12px;
+  }
+  .row .drb .p_m {
+    font-size: 0.96rem;
+    font-weight: bold;
+    margin-left: 5px;
+    color: #551d57;
+  }
+  .row .drb1 {
+    margin-top: 17px !important;
+  }
+  .row .drb3 {
+    margin-bottom: 23px !important;
   }
 
   .buybox {
@@ -649,7 +662,7 @@ li {
     box-sizing: border-box;
   }
   .nav-link {
-    padding: 8px 10px !important;
+    padding: 8px;
     box-sizing: border-box !important;
     color: rgb(140, 63, 192) !important;
     transition: cubic-bezier(0.42, 0, 0.1, 1.13) 0.35s !important;
@@ -666,6 +679,18 @@ li {
   .tab_con h4 {
     font-size: 1.15rem;
     color: #4b4b4b;
+    font-family: "Russo One", sans-serif;
+  }
+
+  .tab_con .table {
+    margin-top: 35px;
+  }
+  .tab_con tbody tr th {
+    padding: 0.65rem 0.5rem !important;
+    color: #4b4b4b;
+  }
+  .table-bordered > :not(caption) > * > * {
+    border-color: rgba(155, 155, 155, 0.3);
   }
 
   .active {
@@ -1255,6 +1280,100 @@ input:hover {
     position: absolute;
     top: 50px;
   }
+
+  #jinwrap #seach_input {
+    width: 0;
+    height: 40px;
+    background: rgba(138, 58, 170, 0.788);
+    border-radius: 20px;
+    position: relative;
+    position: fixed;
+    bottom: 40%;
+    z-index: 55656755;
+    transition: all 0.3s;
+    left: 50px;
+    transform: translate(0, 0px);
+  }
+
+  #jinwrap #seach_input #search_i {
+    position: absolute;
+    left: 5px;
+    background: none;
+    width: 0px;
+    border-radius: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    border: none;
+    transition: all 0.3s;
+  }
+  #jinwrap #seach_input #search_i::placeholder {
+    color: rgba(255, 255, 255, 0.836);
+    font-size: 0.8rem;
+    padding-left: 3px;
+    box-sizing: border-box;
+  }
+
+  .ext {
+    width: 66% !important;
+    transform: translate(7%, -370%) !important;
+  }
+  .ext2 {
+    width: 180px !important;
+  }
+
+  #jinwrap #seach_input .anybt {
+    background: rgb(236, 236, 236);
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    color: rgb(94, 13, 94);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    padding: 0;
+  }
+
+  #seach_input article {
+    position: relative;
+    top: 42px;
+    width: 100%;
+    background: rgba(219, 231, 235, 0.699);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  #seach_input p {
+    width: 97%;
+    margin: 0 auto;
+
+    box-sizing: border-box;
+    color: rgb(94, 13, 94);
+    height: 38px;
+    text-align: left;
+    line-height: 38px;
+    font-size: 0.84rem;
+
+    font-weight: bold;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    border-bottom: 1px solid rgba(94, 13, 94, 0.137);
+  }
+
+  #back_j {
+    width: 0;
+    height: 0;
+    background: rgba(36, 42, 61, 0.411);
+    position: fixed;
+    top: 0;
+  }
+
+  .ext3 {
+    width: 100% !important;
+    height: 100vh !important;
+  }
+
   /* ----------------------------------- */
 
   #main_video {
@@ -1478,8 +1597,8 @@ input:hover {
 
   .cinema_info .small_img {
     width: 43%;
-    height: 210px;
-    background: #61dafb;
+    max-height: 210px;
+    /* background: #61dafb; */
     border-radius: 13px;
     position: relative;
     top: -70px;
@@ -1779,8 +1898,8 @@ input:hover {
 
   .show_ticket article .mv_img {
     width: 15%;
-    height: 65px;
-    background: #6a3a92;
+    max-height: 65px;
+    /* background: #6a3a92; */
     border-radius: 8px;
     overflow: hidden;
     /* border: 1.7px solid rgba(194, 91, 241, 0.63); */
@@ -1955,5 +2074,14 @@ input:hover {
     to {
       transform: translateY(10px) rotateY(-30deg);
     }
+  }
+}
+
+/* ----------------------------width: 370 px 이하 --------------------------- */
+
+@media all and (max-width: 370px) {
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 10px 0;
   }
 }

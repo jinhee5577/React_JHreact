@@ -26,7 +26,7 @@ function Kakaomap() {
          // 장소 검색 객체를 생성
          const ps = new kakao.maps.services.Places();
 
-         
+
          if(ckStatus){  // 또하나의 상태값을 만들어 장소검색시만 ckStatus = true로 변경되어 장소검색get요청이 실행된다. 
              // 키워드로 장소를 검색
              ps.keywordSearch(searchPlace, placesSearchCB); 
@@ -35,7 +35,7 @@ function Kakaomap() {
                 if (status === kakao.maps.services.Status.OK) {
                     let bounds = new kakao.maps.LatLngBounds();
                     for (let i=0; i<data.length; i++) {
-                        displayMarker(data[i]);    
+                        displayMarker(data[i]);     
                         bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
                     }       
                     map.setBounds(bounds);
