@@ -1,6 +1,6 @@
  /*eslint-disable*/ 
  import React, { Component, useEffect, useState, useRef } from 'react';
- import { Navbar,Container,Nav,NavDropdown,Spinner  } from 'react-bootstrap';
+ import { Spinner } from 'react-bootstrap';
  import './App.css'; 
  import Kakaomap from './Kakaomap.js';
  import Video from './Video.js';

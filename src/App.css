@@ -77,10 +77,10 @@ li {
     position: relative;
   }
 
-  .bg0 {
+  /* .bg0 {
     background-image: url(./aesset/pear_b.jpg);
     background-position-x: center;
-  }
+  } */
   .bg1 {
     background-image: url(./aesset/mlb_b.png);
   }
@@ -720,16 +720,13 @@ li {
   animation: jinhee 1.3s infinite;
   box-shadow: 0 0 0 0 rgba(249, 178, 8, 0.5);
 }
-
 input::placeholder {
   font-size: 16px;
   color: darkblue;
 }
-
 input:hover {
   animation: none;
 }
-
 @keyframes jinhee {
   0% {
     -moz-transform: scale(0.95);
@@ -1204,14 +1201,12 @@ input:hover {
   /* #pagination {
   margin-top: 16px;
 }
-
 #pagination a {
   color: rgb(76, 4, 90);
   font-size: 17px;
   text-decoration: none;
   margin: 0 10px;
 }
-
 #pagination a.on {
   color: rgb(150, 36, 160);
   font-weight: bold;
@@ -1519,7 +1514,6 @@ input:hover {
   /* .show-enter {
   transform: scale(0.5);
 }
-
 .show-enter-active {
   transform: scale(1);
   transition: all 450ms;

@@ -41,7 +41,7 @@
             d++;            
          //   console.log(d);           
           }         
-        }        
+    }        
         
      let jinh3 = document.querySelectorAll('.jinh3');  
      let change_d = document.querySelector('.change_d');

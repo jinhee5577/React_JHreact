@@ -182,8 +182,8 @@
                  <Route exact path="/">
                    <div id="jinwrap">
                        <Slider {...settings} width="100%">
-                           <div className="bacground bg0">                                
-                           </div>
+                           {/* <div className="bacground bg0">                                
+                           </div> */}
                            <div className="bacground bg1">                   
                                <h3>20%  Season  OFF!</h3>
                            </div>
