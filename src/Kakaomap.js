@@ -25,7 +25,7 @@ function Kakaomap() {
          const map = new kakao.maps.Map(mapcontainer, options);  // 지도를 생성합니다
 
          // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-         if (navigator.geolocation) {       
+         if (navigator.geolocation) {  // 현재위치.      
              // GeoLocation을 이용해서 접속 위치를 얻어옵니다
              navigator.geolocation.getCurrentPosition(function(position) {                
                 const lat = position.coords.latitude, // 위도
@@ -56,13 +56,13 @@ function Kakaomap() {
                    iwRemoveable = true;
 
              // 인포윈도우를 생성합니다
-             let infowindow = new kakao.maps.InfoWindow({
+             let infowindow2 = new kakao.maps.InfoWindow({
                  content : iwContent,
                  // removable : iwRemoveable
              });
             
              // 인포윈도우를 마커위에 표시합니다 
-             infowindow.open(map, marker);
+             infowindow2.open(map, marker);
             
              // 지도 중심좌표를 접속위치로 변경합니다
              map.setCenter(locPosition);      
@@ -104,7 +104,7 @@ function Kakaomap() {
                 }
         
                 for (i = 1; i <= pagination.last; i++) {
-                    var el = document.createElement('div')
+                    const el = document.createElement('div')
                     // el.href = '#'
                     el.innerHTML = i
             
@@ -112,9 +112,9 @@ function Kakaomap() {
                         el.className = 'on'
                     } else {
                         el.onclick = (function (i) {
-                            let maptop = location.current.offsetTop;
-                         //   console.log(maptop);
-                            window.scrollTo({top:maptop + 350, behavior:'smooth'});
+                            // let maptop = location.current.offsetTop;
+                           //  console.log(maptop);
+                            // window.scrollTo({top:maptop + 350, behavior:'smooth'});
                             return function () {
                                 pagination.gotoPage(i)
                             }
