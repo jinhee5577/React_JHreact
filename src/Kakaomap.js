@@ -24,49 +24,51 @@ function Kakaomap() {
          };
          const map = new kakao.maps.Map(mapcontainer, options);  // 지도를 생성합니다
 
-         // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-         if (navigator.geolocation) {  // 현재위치.      
-             // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-             navigator.geolocation.getCurrentPosition(function(position) {                
+         if(!ckStatus){
+            // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+            if (navigator.geolocation) {  // 현재위치.      
+                // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+                navigator.geolocation.getCurrentPosition(function(position) {                
                 const lat = position.coords.latitude, // 위도
-                      lon = position.coords.longitude; // 경도     
+                        lon = position.coords.longitude; // 경도     
                     //   console.log(lat);                
                 const locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                      message = '<div id="me" style="padding:3px;">me</div>'; // 인포윈도우에 표시될 내용입니다
+                        message = '<div id="me" style="padding:3px;">me</div>'; // 인포윈도우에 표시될 내용입니다
                 
                 // 마커와 인포윈도우를 표시합니다
                 currDisplayMarker(locPosition, message);                    
-             });
+                });
             
-         } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다            
-             const locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-                   message = 'geolocation을 사용할수 없어요..'
+            } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다            
+                const locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+                    message = 'geolocation을 사용할수 없어요..'
                 
-                   currDisplayMarker(locPosition, message);
-         }
+                    currDisplayMarker(locPosition, message);
+            }
 
-         // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-         function currDisplayMarker(locPosition, message) {
-             // 마커를 생성합니다
-             const marker = new kakao.maps.Marker({  
-                   map: map, 
-                   position: locPosition
-             });             
-             const iwContent = message, // 인포윈도우에 표시할 내용
-                   iwRemoveable = true;
+            // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+            function currDisplayMarker(locPosition, message) {
+                // 마커를 생성합니다
+                const marker = new kakao.maps.Marker({  
+                    map: map, 
+                    position: locPosition
+                });             
+                const iwContent = message, // 인포윈도우에 표시할 내용
+                    iwRemoveable = true;
 
-             // 인포윈도우를 생성합니다
-             let infowindow2 = new kakao.maps.InfoWindow({
-                 content : iwContent,
-                 // removable : iwRemoveable
-             });
+                // 인포윈도우를 생성합니다
+                let infowindow = new kakao.maps.InfoWindow({
+                    content : iwContent,
+                    // removable : iwRemoveable
+                });
             
-             // 인포윈도우를 마커위에 표시합니다 
-             infowindow2.open(map, marker);
+                // 인포윈도우를 마커위에 표시합니다 
+                infowindow.open(map, marker);
             
-             // 지도 중심좌표를 접속위치로 변경합니다
-             map.setCenter(locPosition);      
-         }    
+                // 지도 중심좌표를 접속위치로 변경합니다
+                map.setCenter(locPosition);      
+            }        
+         }             
 
          // 장소 검색 객체를 생성
          const ps = new kakao.maps.services.Places();
@@ -163,16 +165,17 @@ function Kakaomap() {
             <div id="jinheemap" ref={location} >
                 <div id="kakaomap"> 
                 </div>
-                <form onSubmit={ (e) => { 
+                <form onSubmit={(e) => { 
                         e.preventDefault();
                         setsearchPlace(inputText);
                         setckStatus(true);
                         setInputText("");
-                    } } >
+                }}>
                     <input className="search" placeholder="Search Place" 
                         onChange={ (e) => { setInputText(e.target.value); } } value={inputText}/> 
                     <button className="mapbt" type="submit">검색</button>
                 </form>
+                
                 <div id="showplace" ref={location2} >
                 {  
                    showplace.map( (item, i) => { 
