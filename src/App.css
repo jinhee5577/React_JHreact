@@ -1089,6 +1089,17 @@ input:hover {
     /* border: 2.2px solid rgba(156, 9, 137, 0.3); */
   }
 
+  #me { 
+    width: 150px;
+    line-height: 20px;
+    text-align: center;
+    left: 65px !important;
+    /* background: rgba(120, 64, 184, 0.752); */
+    color: rgb(94, 53, 151);
+    font-size: 1.1rem;    
+    font-weight: bold;
+  }
+
   #jinheemap .search {
     position: absolute;
     background: rgba(92, 12, 138, 0.2);

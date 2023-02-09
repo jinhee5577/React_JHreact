@@ -14,6 +14,7 @@ function Kakaomap() {
     let location = useRef();
     let location2 = useRef();    
 
+    
     useEffect(() => {
          let infowindow = new kakao.maps.InfoWindow({zIndex:1});
          const mapcontainer = document.getElementById('kakaomap');
@@ -21,7 +22,51 @@ function Kakaomap() {
              center: new kakao.maps.LatLng(33.450701, 126.570667),
              level: 3
          };
-         const map = new kakao.maps.Map(mapcontainer, options);
+         const map = new kakao.maps.Map(mapcontainer, options);  // 지도를 생성합니다
+
+         // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+         if (navigator.geolocation) {       
+             // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+             navigator.geolocation.getCurrentPosition(function(position) {                
+                const lat = position.coords.latitude, // 위도
+                      lon = position.coords.longitude; // 경도     
+                    //   console.log(lat);                
+                const locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                      message = '<div id="me" style="padding:3px;">me</div>'; // 인포윈도우에 표시될 내용입니다
+                
+                // 마커와 인포윈도우를 표시합니다
+                currDisplayMarker(locPosition, message);                    
+             });
+            
+         } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다            
+             const locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+                   message = 'geolocation을 사용할수 없어요..'
+                
+                   currDisplayMarker(locPosition, message);
+         }
+
+         // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+         function currDisplayMarker(locPosition, message) {
+             // 마커를 생성합니다
+             const marker = new kakao.maps.Marker({  
+                   map: map, 
+                   position: locPosition
+             });             
+             const iwContent = message, // 인포윈도우에 표시할 내용
+                   iwRemoveable = true;
+
+             // 인포윈도우를 생성합니다
+             let infowindow = new kakao.maps.InfoWindow({
+                 content : iwContent,
+                 // removable : iwRemoveable
+             });
+            
+             // 인포윈도우를 마커위에 표시합니다 
+             infowindow.open(map, marker);
+            
+             // 지도 중심좌표를 접속위치로 변경합니다
+             map.setCenter(locPosition);      
+         }    
 
          // 장소 검색 객체를 생성
          const ps = new kakao.maps.services.Places();
@@ -88,7 +133,7 @@ function Kakaomap() {
                     position: new kakao.maps.LatLng(place.y, place.x) 
                 });
                 kakao.maps.event.addListener(marker, 'click', function () {
-                    infowindow.setContent('<div id="view_p" style="padding:5px;font-size:12px;">' + place.place_name + '</div>')
+                    infowindow.setContent('<div id="view_p" style="padding:3px;font-size:11px;">' + place.place_name + '</div>')
                     infowindow.open(map, marker)
                   });
              } 
